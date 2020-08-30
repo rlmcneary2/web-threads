@@ -42,7 +42,7 @@ export const App = () => {
         console.log(`Worker error=${err.message}`);
       }
 
-      w.terminate();
+      // w.terminate();
     }
 
     work();

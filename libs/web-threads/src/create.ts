@@ -3,15 +3,17 @@ import { generateWorkerCode } from "./worker";
 
 let nextId = Date.now();
 
-export default function createWorker(task: Task | string) {
+export default function createWorker(task: Task | string | URL) {
   const requests = new Map<number, RejectResolve>();
 
-  const code = generateWorkerCode(task);
-  // console.log(`createWorker:\r\n${code}`);
-
-  const uri = URL.createObjectURL(
-    new Blob([code], { type: "text/javascript" })
-  );
+  let uri: string | URL;
+  if (typeof task === "function") {
+    const code = generateWorkerCode(task);
+    // console.log(`createWorker:\r\n${code}`);
+    uri = URL.createObjectURL(new Blob([code], { type: "text/javascript" }));
+  } else {
+    uri = task;
+  }
 
   const worker = new Worker(uri);
   worker.addEventListener("message", (evt) => {

@@ -22,19 +22,14 @@
     }
   },
   "projects": {
-    "web-threads": {
-      "tags": []
-    },
     "test": {
       "tags": []
     },
-    "test-e2e": {
-      "tags": [],
-      "implicitDependencies": ["test"]
+    "web-threads": {
+      "tags": []
+    },
+    "worker": {
+      "tags": []
     }
-  },
-  "workspaceLayout": {
-    "appsDir": "packages",
-    "libsDir": "packages"
   }
 }

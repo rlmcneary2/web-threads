@@ -1,52 +1,22 @@
 {
   "version": 1,
   "projects": {
-    "web-threads": {
-      "root": "packages/web-threads",
-      "sourceRoot": "packages/web-threads/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "tsConfig": [
-              "packages/web-threads/tsconfig.lib.json",
-              "packages/web-threads/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!packages/web-threads/**/*"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "packages/web-threads/jest.config.js",
-            "tsConfig": "packages/web-threads/tsconfig.spec.json",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "test": {
-      "root": "packages/test",
-      "sourceRoot": "packages/test/src",
+      "root": "apps/test",
+      "sourceRoot": "apps/test/src",
       "projectType": "application",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/web:build",
           "options": {
-            "outputPath": "dist/packages/test",
-            "index": "packages/test/src/index.html",
-            "main": "packages/test/src/main.tsx",
-            "polyfills": "packages/test/src/polyfills.ts",
-            "tsConfig": "packages/test/tsconfig.app.json",
-            "assets": [
-              "packages/test/src/favicon.ico",
-              "packages/test/src/assets"
-            ],
-            "styles": ["packages/test/src/styles.css"],
+            "outputPath": "dist/apps/test",
+            "index": "apps/test/src/index.html",
+            "main": "apps/test/src/main.tsx",
+            "polyfills": "apps/test/src/polyfills.ts",
+            "tsConfig": "apps/test/tsconfig.app.json",
+            "assets": ["apps/test/src/favicon.ico", "apps/test/src/assets"],
+            "styles": ["apps/test/src/styles.css"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -54,8 +24,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "packages/test/src/environments/environment.ts",
-                  "with": "packages/test/src/environments/environment.prod.ts"
+                  "replace": "apps/test/src/environments/environment.ts",
+                  "with": "apps/test/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -91,46 +61,72 @@
           "options": {
             "linter": "eslint",
             "tsConfig": [
-              "packages/test/tsconfig.app.json",
-              "packages/test/tsconfig.spec.json"
+              "apps/test/tsconfig.app.json",
+              "apps/test/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!packages/test/**/*"]
+            "exclude": ["**/node_modules/**", "!apps/test/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "packages/test/jest.config.js",
-            "tsConfig": "packages/test/tsconfig.spec.json",
+            "jestConfig": "apps/test/jest.config.js",
+            "tsConfig": "apps/test/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }
       }
     },
-    "test-e2e": {
-      "root": "packages/test-e2e",
-      "sourceRoot": "packages/test-e2e/src",
-      "projectType": "application",
+    "web-threads": {
+      "root": "libs/web-threads",
+      "sourceRoot": "libs/web-threads/src",
+      "projectType": "library",
+      "schematics": {},
       "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "packages/test-e2e/cypress.json",
-            "tsConfig": "packages/test-e2e/tsconfig.e2e.json",
-            "devServerTarget": "test:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "test:serve:production"
-            }
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": ["packages/test-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!packages/test-e2e/**/*"]
+            "tsConfig": [
+              "libs/web-threads/tsconfig.lib.json",
+              "libs/web-threads/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/web-threads/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/web-threads/jest.config.js",
+            "tsConfig": "libs/web-threads/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "worker": {
+      "root": "libs/worker",
+      "sourceRoot": "libs/worker/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/worker/tsconfig.lib.json",
+              "libs/worker/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/worker/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/worker/jest.config.js",
+            "tsConfig": "libs/worker/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }

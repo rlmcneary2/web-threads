@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@web-threads/web-threads": ["packages/web-threads/src/index.ts"]
+      "@web-threads/web-threads": ["libs/web-threads/src/index.ts"],
+      "@web-threads/worker": ["libs/worker/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
